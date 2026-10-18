@@ -1,0 +1,73 @@
+
+========================================================================
+1.2  Preprocessing: official per-channel min-max vs MedSAM_Inference global min-max
+========================================================================
+Derma: per-channel mean RGB = [0.6565338373184204, 0.5911927819252014, 0.6075617074966431]
+Derma: global      mean RGB = [0.8275954723358154, 0.5358708500862122, 0.5523021817207336]
+Derma: cosine(features) = 0.8752 | rel. diff of covariance = 0.736
+Kvasir: per-channel mean RGB = [0.3821297883987427, 0.24446401000022888, 0.21014219522476196]
+Kvasir: global      mean RGB = [0.38477516174316406, 0.24480971693992615, 0.20452533662319183]
+Kvasir: cosine(features) = 0.9997 | rel. diff of covariance = 0.021
+
+========================================================================
+1.3  Covariance: official cov_descr vs torch.cov
+========================================================================
+cov_descr shape: (256, 256) | mean ratio cov_descr/torch.cov = 0.99951184
+4095/4097 = 0.99951184  -> code divides by N+1, paper says N-1
+symmetric: max|C-C^T| = 0.00e+00
+
+========================================================================
+1.6  Is the MedSAM covariance SPD or only PSD?  (LayerNorm2d hypothesis)
+========================================================================
+neck[3].weight (gamma): min -0.0075  max 0.2402  any zero: False
+
+Derma train[0]:
+  smallest 5 eigenvalues : [8.237538108865874e-19, 4.542637894686175e-09, 7.128852704862983e-09, 2.726456609953988e-08, 4.3252258276975716e-08]
+  largest  3 eigenvalues : [0.15823378239714994, 0.21090012176501632, 0.5180408684345752]
+  ratio  lambda_1 / lambda_2 : 1.81e-10   (≈0 -> one exact null direction)
+  numerical rank (tol 1e-10*max): 255 / 256
+  |cos(eigvec_min, 1/gamma)|    : 1.000000  (1.0 = parallel)
+  ||C v|| / ||C||               : 2.92e-11
+  eigenvalues < 1e-4 (ReEig threshold): 59 / 256
+  float32 smallest eigenvalue   : 4.024e-11
+
+Kvasir:
+  smallest 5 eigenvalues : [7.121059448349906e-19, 2.832041014059633e-09, 5.088297948998246e-09, 1.6471235241685282e-08, 2.5533330979838694e-08]
+  largest  3 eigenvalues : [0.20933712720642644, 0.260935386565894, 0.4783821406916269]
+  ratio  lambda_1 / lambda_2 : 2.51e-10   (≈0 -> one exact null direction)
+  numerical rank (tol 1e-10*max): 255 / 256
+  |cos(eigvec_min, 1/gamma)|    : 1.000000  (1.0 = parallel)
+  ||C v|| / ||C||               : 3.96e-11
+  eigenvalues < 1e-4 (ReEig threshold): 69 / 256
+  float32 smallest eigenvalue   : -1.787e-11
+
+========================================================================
+1.4  SPDNet (official BasicSPDNet) shapes, parameters and optimizer groups
+========================================================================
+input batch: (4, 256, 256)
+  bimap1   -> (4, 1, 128, 128)
+  reeig1   -> (4, 1, 128, 128)
+  bimap2   -> (4, 1, 64, 64)
+  reeig1   -> (4, 1, 64, 64)
+  bimap3   -> (4, 1, 32, 32)
+  reeig1   -> (4, 1, 32, 32)
+  logeig   -> (4, 1, 32, 32)
+  linear   -> (4, 7)  (Linear in=1024, out=7)
+  param _spdnet.spd_transform.bimap1._W          (1, 1, 256, 128)       StiefelParameter     32768
+  param _spdnet.spd_transform.bimap2._W          (1, 1, 128, 64)        StiefelParameter      8192
+  param _spdnet.spd_transform.bimap3._W          (1, 1, 64, 32)         StiefelParameter      2048
+  param _spdnet.linear.weight                    (7, 1024)              Parameter             7168
+  param _spdnet.linear.bias                      (7,)                   Parameter                7
+  total trainable numbers: 50183
+  MixOptimizer -> Stiefel (Riemannian SGD): 3 tensors | Adam: 2 tensors
+  ||W^T W - I|| before step: 1.01e-05
+  ||W^T W - I|| after  step: 8.22e-15  (QR retraction keeps W on the Stiefel manifold)
+
+========================================================================
+1.5  Class weights used by the loss (DermaMNIST train split)
+========================================================================
+split sizes train/val/test: 7007/1003/2005
+train counts per class    : [228, 359, 769, 80, 779, 4693, 99]
+loss weight per class     : [0.1347, 0.0855, 0.0399, 0.3838, 0.0394, 0.0065, 0.3101]
+majority-class baseline   : acc 0.670, balanced acc 0.143
+get_classifier_loss mode  : categorical

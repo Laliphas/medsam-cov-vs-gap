@@ -1,0 +1,81 @@
+diff --git a/src/experiments/spdnet.py b/src/experiments/spdnet.py
+index 53619a8..2c93ad5
+--- a/src/experiments/spdnet.py
++++ b/src/experiments/spdnet.py
+@@ -149,6 +149,7 @@ def fit_spdnet(
+         result_dir = os.path.abspath(os.path.join(model_directory, dataset.dataset_name, features, str(i)))
+ 
+         print(f'Attempt {i}: {result_dir}')
++        pl.seed_everything(i, workers=True)
+ 
+         torch_metrics_file = os.path.join(result_dir, 'torch_metrics.json')
+         np_metrics_file = os.path.join(result_dir, 'np_metrics.json')
+diff --git a/src/main.py b/src/main.py
+index 092f9a0..fad6863
+--- a/src/main.py
++++ b/src/main.py
+@@ -394,7 +394,8 @@ def make_debug_dir(dir: str, debug: bool, create: bool = True) -> str:
+ 
+ def handle_spdnet_gve(ds: medmnist_dataset.MedMNIST2D,
+                       cache: bool = True,
+-                      debug: bool = False) -> None:
++                      debug: bool = False,
++                      gves: tuple[str, ...] = ('dino', 'medsam')) -> None:
+     """
+     Trains SPDNet on GVE features.
+ 
+@@ -405,7 +406,7 @@ def handle_spdnet_gve(ds: medmnist_dataset.MedMNIST2D,
+     """
+     from common.gve import PretrainedFeatures
+     print(f'SPDNet, general vision encoder features on dataset: {ds.dataset_name}')
+-    for gve in ('dino', 'medsam'):
++    for gve in gves:
+         cache_dir = make_debug_dir(feature_cache_dir(ds, gve), debug) if cache else None
+ 
+         print(f'  Fetching/Loading GVE model ({gve})...')
+diff --git a/src/medmnist_dataset.py b/src/medmnist_dataset.py
+index ee9f316..61d767e
+--- a/src/medmnist_dataset.py
++++ b/src/medmnist_dataset.py
+@@ -686,6 +686,9 @@ def initialize_mnist(datasource: MnistSubset, root_directory: str,
+     # def _transform_target(target: np.ndarray) -> np.ndarray:
+     #     return target
+ 
++    import os
++    os.makedirs(root_directory, exist_ok=True)
++
+     splits = tuple(DatasetSplit(split).value for split in splits)
+ 
+     datasets = tuple(datasource.mnist_type(**datasource.parameters,
+diff --git a/src/nn_lit/__init__.py b/src/nn_lit/__init__.py
+index 926c7b6..17367da
+--- a/src/nn_lit/__init__.py
++++ b/src/nn_lit/__init__.py
+@@ -145,9 +145,12 @@ class BaseModel(lightning.pytorch.LightningModule, ABC):
+                 else:
+                     uses_wandb = False
+ 
+-                    import wandb
++                    try:
++                        import wandb
++                    except ImportError:
++                        wandb = None
+ 
+-                    if wandb.run is None:
++                    if wandb is None or wandb.run is None:
+                         print('Not logging to wandb since it is not initialized.')
+                     else:
+                         uses_wandb = True
+diff --git a/src/setup.py b/src/setup.py
+index 998d8a9..1b271c8
+--- a/src/setup.py
++++ b/src/setup.py
+@@ -35,7 +35,7 @@ def run(name: str, *args: Any, check: bool = True, reruns: int = 0, text: bool =
+     import subprocess
+     while True:
+         try:
+-            return subprocess.run([os.path.join(python_dir, name), *args], check=check, text=text)
++            return subprocess.run([sys.executable, '-m', name, *args], check=check, text=text)
+         except subprocess.CalledProcessError:
+             if reruns > 0:
+                 reruns -= 1

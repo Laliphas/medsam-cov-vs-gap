@@ -1,0 +1,19 @@
+{
+  "method": "gap",
+  "standardize": "none",
+  "minutes": 26.3,
+  "trainable_params": 2056,
+  "mean_metrics_sklearn": {
+    "Accuracy": 0.750375,
+    "Balanced accuracy": 0.7503750000000001,
+    "Micro F1": 0.750375,
+    "Micro Precision": 0.750375,
+    "Micro Recall": 0.750375,
+    "Macro F1": 0.747725935225867,
+    "Macro Precision": 0.7499491163942957,
+    "Macro Recall": 0.7503750000000001,
+    "Micro AUROC": 0.972298359375,
+    "Macro AUROC": 0.9702078571428572
+  },
+  "device": "NVIDIA GeForce RTX 3050 Ti Laptop GPU"
+}

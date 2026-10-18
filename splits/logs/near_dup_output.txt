@@ -1,0 +1,20 @@
+8000 รูป กำลังคำนวณ dHash ...
+
+threshold | #คู่ | #คู่ข้าม class | #รูปที่มีคู่อย่างน้อย 1
+   ≤ 0    |    18 |     1 |    36
+   ≤ 5    |    26 |     1 |    52
+   ≤10    |    28 |     1 |    56
+   ≤20    |    28 |     1 |    56
+   ≤30    |    37 |     1 |    67
+   ≤40    |    77 |     8 |    86
+
+คู่ใน class เดียวกันที่ระยะ ≤ 20 แยกตาม class:
+    dyed-lifted-polyps       1
+    dyed-resection-margins   5
+    esophagitis              4
+    normal-cecum             3
+    normal-pylorus           3
+    polyps                   6
+    ulcerative-colitis       5
+
+บันทึกภาพตัวอย่าง: splits/near_dup_examples.png

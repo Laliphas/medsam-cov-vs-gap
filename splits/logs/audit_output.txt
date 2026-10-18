@@ -1,0 +1,47 @@
+classes: {'dyed-lifted-polyps': 0, 'dyed-resection-margins': 1, 'esophagitis': 2, 'normal-cecum': 3, 'normal-pylorus': 4, 'normal-z-line': 5, 'polyps': 6, 'ulcerative-colitis': 7}
+
+เขียน 8000 แถวลง splits/kvasir_v2_inventory.csv
+
+(a) จำนวนรูปต่อ class
+    0  dyed-lifted-polyps       1000
+    1  dyed-resection-margins   1000
+    2  esophagitis              1000
+    3  normal-cecum             1000
+    4  normal-pylorus           1000
+    5  normal-z-line            1000
+    6  polyps                   1000
+    7  ulcerative-colitis       1000
+
+(b) รูปที่เปิดไม่ได้: 0
+
+(c) ขนาดรูป (กว้าง×สูง): จำนวน
+    720×576 (aspect 1.25): 5137
+    1280×1024 (aspect 1.25): 2122
+    1920×1072 (aspect 1.79): 734
+    1350×1080 (aspect 1.25): 3
+    1350×1064 (aspect 1.27): 3
+    576×576 (aspect 1.00): 1
+    mode: {'RGB': 8000}
+    ขนาดแยกตาม class:
+      dyed-lifted-polyps       720×576:996, 1350×1064:2, 1350×1080:1, 1920×1072:1
+      dyed-resection-margins   720×576:998, 1920×1072:2
+      esophagitis              1280×1024:728, 1920×1072:206, 720×576:66
+      normal-cecum             720×576:1000
+      normal-pylorus           1280×1024:730, 1920×1072:237, 720×576:33
+      normal-z-line            1280×1024:649, 1920×1072:249, 720×576:102
+      polyps                   720×576:969, 1920×1072:20, 1280×1024:10, 1350×1064:1
+      ulcerative-colitis       720×576:973, 1920×1072:19, 1280×1024:5, 1350×1080:2, 576×576:1
+
+(d) กลุ่มไฟล์ที่ซ้ำกันทุก byte: 12 กลุ่ม (24 ไฟล์), ข้าม class: 1 กลุ่ม
+     ['dyed-lifted-polyps/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg', 'dyed-resection-margins/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg']
+     ['dyed-resection-margins/2781dc1f-d88f-48cc-982e-9f0f147eb6f6.jpg', 'dyed-resection-margins/2ee00dbb-1c4a-46dc-92f8-6bfe66cb1a3b.jpg']
+     ['dyed-resection-margins/73bf3c4f-c78b-44c7-ba98-3c8f1aeed6cc.jpg', 'dyed-resection-margins/ad250fde-7271-4e25-8285-b078ec1715f2.jpg']
+     ['normal-pylorus/b8cba8f6-e893-476e-9162-c3bc08791bfc.jpg', 'normal-pylorus/d7d29ace-b6f7-4f0a-ac39-d33519e4625c.jpg']
+     ['polyps/0e68fc5b-beaa-4607-a13a-f6db84121c78.jpg', 'polyps/92177bcd-eeee-4dd4-b904-fb902771f334.jpg']
+     ['polyps/47bcdfff-ecb9-42fd-8091-d63ee2f7dada.jpg', 'polyps/4d98990f-5108-4075-b824-d65186bdf035.jpg']
+     ['polyps/9936b7d3-d4c6-4b19-a6d9-957c63fd1d09.jpg', 'polyps/c116d49a-64af-4059-af00-a88e687d46d7.jpg']
+     ['ulcerative-colitis/28db4e2a-2b48-43b7-88b2-5eaba2eb41f4.jpg', 'ulcerative-colitis/a9bed1c9-0601-4ab6-bf06-1dc2cdd4bed9.jpg']
+     ['ulcerative-colitis/2b42eaad-16d3-4bab-85b2-07a51488be7b.jpg', 'ulcerative-colitis/761fffc8-bc50-4dd9-a91f-90fc5a963e04.jpg']
+     ['ulcerative-colitis/40632e28-dd57-4a6b-8c4e-aa7ed2098f1d.jpg', 'ulcerative-colitis/88e1bfca-2264-4327-911d-394dce0bf153.jpg']
+     ['ulcerative-colitis/47696854-bb6e-45a0-959f-7eec2f42b90d.jpg', 'ulcerative-colitis/a5c5aed5-a5b3-4d38-882a-340060128a66.jpg']
+     ['ulcerative-colitis/4ef52d45-8595-4700-ab03-b11406cd197c.jpg', 'ulcerative-colitis/e421e8b3-1696-430a-b682-48e57efc97a6.jpg']

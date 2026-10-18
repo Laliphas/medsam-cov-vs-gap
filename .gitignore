@@ -1,0 +1,14 @@
+# Data, weights and caches (large, not ours to redistribute)
+data/
+third_party/
+*.pth
+*.nd
+splits/near_dup_examples.png
+checks/outputs/phase0_medsam_segmentation_demo.png
+
+# Python / editors
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+*.code-workspace

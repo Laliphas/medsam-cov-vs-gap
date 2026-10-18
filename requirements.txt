@@ -1,0 +1,18 @@
+# Versions used for all reported runs (Windows 11, Python 3.11, NVIDIA RTX 3050 Ti Laptop GPU).
+# Install torch for your CUDA version first, see https://pytorch.org
+torch==2.2.1
+torchvision==0.17.1
+lightning==2.4.0
+torchmetrics==1.4.3
+geomstats==2.7.0
+medmnist==3.0.1
+monai==1.4.0
+numpy==1.25.2
+pandas==2.0.1
+scikit-learn==1.5.1
+matplotlib==3.7.1
+pillow==10.3.0
+tqdm==4.66.6
+# MedSAM (provides `segment_anything`), commit used:
+# pip install -e git+https://github.com/bowang-lab/MedSAM@d71e8a1a99ad751840a22a7fa3ecfb4166fb1488#egg=medsam
+# Notebook only: jupyter

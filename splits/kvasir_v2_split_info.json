@@ -1,0 +1,74 @@
+{
+  "seed": 42,
+  "ratios": {
+    "train": 0.7,
+    "test": 0.2,
+    "val": 0.1
+  },
+  "dup_threshold_dhash256": 20,
+  "n_images": 7998,
+  "dropped_label_conflict": [
+    "dyed-lifted-polyps/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg",
+    "dyed-resection-margins/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg"
+  ],
+  "counts": {
+    "train": 5598,
+    "val": 800,
+    "test": 1600
+  },
+  "per_class": {
+    "dyed-lifted-polyps": {
+      "train": 699,
+      "val": 100,
+      "test": 200
+    },
+    "dyed-resection-margins": {
+      "train": 699,
+      "val": 100,
+      "test": 200
+    },
+    "esophagitis": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    },
+    "normal-cecum": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    },
+    "normal-pylorus": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    },
+    "normal-z-line": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    },
+    "polyps": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    },
+    "ulcerative-colitis": {
+      "train": 700,
+      "val": 100,
+      "test": 200
+    }
+  },
+  "class_to_idx": {
+    "dyed-lifted-polyps": 0,
+    "dyed-resection-margins": 1,
+    "esophagitis": 2,
+    "normal-cecum": 3,
+    "normal-pylorus": 4,
+    "normal-z-line": 5,
+    "polyps": 6,
+    "ulcerative-colitis": 7
+  },
+  "sha256_inventory": "b55c0ea990b24ec9d4c788ed0f02462d577f6d42ad5e06823141c85c58e1b153",
+  "sha256_near_dup_pairs": "6cebc230636b5bedb98bcb7e1561113d11a48c285f43c2564713698486fa45f9",
+  "sha256_split_csv": "4b477c457e726bc7f201fe7fab04e6ec55c324e6941a1acc6791f9b3e679ad1f"
+}

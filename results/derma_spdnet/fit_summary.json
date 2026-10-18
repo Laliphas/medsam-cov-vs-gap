@@ -1,0 +1,8 @@
+{
+  "method": "spdnet",
+  "standardize": "none",
+  "minutes": 176,
+  "minutes_note": "approximate, from the official run log (src/reproduce_derma.py); training only, cached features",
+  "trainable_params": 50183,
+  "source": "official main.handle_spdnet_gve (MedSAM only), 5 seeded repeats"
+}

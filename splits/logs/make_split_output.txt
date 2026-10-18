@@ -1,0 +1,18 @@
+คู่ซ้ำที่ระยะ ≤ 20: 28 คู่
+กลุ่มทั้งหมด: 7971 (ขนาด > 1: 27)
+ตัดทิ้งเพราะ label ขัดกัน: ['dyed-lifted-polyps/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg', 'dyed-resection-margins/2164dff2-d611-4570-8c60-ce88f8b2f7f3.jpg']
+
+class                     train   val  test   รวม
+dyed-lifted-polyps          699   100   200   999
+dyed-resection-margins      699   100   200   999
+esophagitis                 700   100   200  1000
+normal-cecum                700   100   200  1000
+normal-pylorus              700   100   200  1000
+normal-z-line               700   100   200  1000
+polyps                      700   100   200  1000
+ulcerative-colitis          700   100   200  1000
+รวม                        5598   800  1600  7998
+ตรวจแล้ว: ไม่มีกลุ่มรูปซ้ำข้าม split ✓
+
+sha256 ของ split CSV: 4b477c457e726bc7f201fe7fab04e6ec55c324e6941a1acc6791f9b3e679ad1f
+(รันซ้ำแล้วค่านี้ต้องเท่าเดิม = split reproducible)

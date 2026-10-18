@@ -1,0 +1,19 @@
+{
+  "method": "spdnet",
+  "standardize": "none",
+  "minutes": 131.2,
+  "trainable_params": 51208,
+  "mean_metrics_sklearn": {
+    "Accuracy": 0.853,
+    "Balanced accuracy": 0.8530000000000001,
+    "Micro F1": 0.853,
+    "Micro Precision": 0.853,
+    "Micro Recall": 0.853,
+    "Macro F1": 0.8524875949080022,
+    "Macro Precision": 0.85520837777151,
+    "Macro Recall": 0.8530000000000001,
+    "Micro AUROC": 0.9894872433035713,
+    "Macro AUROC": 0.9875741071428571
+  },
+  "device": "NVIDIA GeForce RTX 3050 Ti Laptop GPU"
+}
