@@ -6,6 +6,9 @@ third_party/
 splits/near_dup_examples.png
 checks/outputs/phase0_medsam_segmentation_demo.png
 
+# Personal lab notebook (Thai); its content is in README.md and notebooks/report.ipynb
+docs/
+
 # Python / editors
 __pycache__/
 *.pyc

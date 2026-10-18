@@ -2,7 +2,7 @@
 
     python data_prep/make_split.py
 
-Decisions (fixed before any training, see docs/NOTES_TH.md section 3):
+Decisions (fixed before any training; reasons in notebooks/report.ipynb, section 2):
   * 70/10/20 per class (as DermaMNIST 7:1:2), one split, seed 42
   * images with dHash distance <= 20 form one group and always stay in the same split;
     a group whose images carry different labels is dropped

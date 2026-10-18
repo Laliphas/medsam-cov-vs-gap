@@ -40,7 +40,7 @@ Paper, MedSAM + SPDNet on DermaMNIST: 56.3 balanced accuracy, 88.5 AUROC.
 * Scaling the GAP features (z-score) is worth about +10 points. It matters far more than which head is used.
 * SPDNet costs 12–35× more training time, 25× more parameters and 256× more storage per image.
 
-The full analysis, with figures and the answers to the four questions, is in [`notebooks/report.ipynb`](notebooks/report.ipynb).
+The full analysis, with the design decisions and their reasons, figures and the answers to the four questions, is in [`notebooks/report.ipynb`](notebooks/report.ipynb).
 
 ## Repository layout
 
@@ -61,7 +61,6 @@ results/        one folder per experiment: summary.md, per_run/per_class CSV, co
                 fit_summary.json, runs/<seed>/ predictions + targets
 patches/        our changes to the official code (5 small edits, see below)
 notebooks/      report.ipynb: reads results/ only, no GPU needed
-docs/           NOTES_TH.md: full lab notebook (Thai)
 ```
 
 ## Setup
